@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar, faComment, faEllipsisH, faHeart, faRetweet, faUpload } from "@fortawesome/free-solid-svg-icons";
 
 export default ({ tweet }) => {
+
+  const [showMore, setShowMore] = useState(false);
   const [comments, setComments] = useState(0);
   const [likes, setLikes] = useState(0);
   const [retweet, setRetweets] = useState(0);
@@ -23,6 +25,12 @@ export default ({ tweet }) => {
     }
   }
 
+  const maxChars = 280;
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <div className="border-b border-gray-800 p-4 hover:bg-gray-800 transition duration-200">
       <div className="flex space-x-3">
@@ -38,7 +46,20 @@ export default ({ tweet }) => {
             <FontAwesomeIcon icon={faEllipsisH} className="text-gray-500" />
           </div>
 
-          <p className="mt-2">{tweet.content}</p>
+          <div className="w-64 xl:w-96">
+            <p className="mt-2 break-words">
+              {showMore || tweet.content.length <= maxChars ? tweet.content : `${tweet.content.slice(0, maxChars)}...`}
+            </p>
+
+            {tweet.content.length > maxChars && (
+              <button
+                onClick={toggleShowMore}
+                className="text-blue-500 hover:underline focus:outline-none"
+              >
+                {showMore ? "Mostrar menos" : "Mostrar mais"}
+              </button>
+            )}
+          </div>
 
           {tweet.image && <img src={tweet.image} className="mt-3 rounded-2xl max-w-full h-auto" alt="user image content" />}
 

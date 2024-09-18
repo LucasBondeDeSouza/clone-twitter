@@ -49,7 +49,7 @@ export default () => {
         hour: '2-digit',
         minute: '2-digit'
       }),
-      Image: includeImage ? getRandomImage() : null,
+      image: includeImage ? getRandomImage() : null,
       likes: 0,
       retweets: 0,
       comments: 0
