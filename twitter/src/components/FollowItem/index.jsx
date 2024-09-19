@@ -16,7 +16,7 @@ export default ({name, username}) => {
                 </div>
             </div>
 
-            <button className="bg-white text-black font-bold px-4 py-2 rounded-full hover:bg-gray-300 transition duration-200">follow</button>
+            <button className="hidden xl:block bg-white text-black font-bold px-4 py-2 rounded-full hover:bg-gray-300 transition duration-200">follow</button>
         </div>
     )
 }
